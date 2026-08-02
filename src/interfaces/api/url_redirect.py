@@ -5,5 +5,5 @@ from fastapi.responses import RedirectResponse
 router = APIRouter()
 
 @router.get("/{short_url}",status_code=301)
-def redirect() -> str:
+def redirect(short_url) -> RedirectResponse:
     return RedirectResponse(url='https://www.uol.com.br/',status_code=301)

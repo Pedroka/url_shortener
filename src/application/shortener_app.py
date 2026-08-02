@@ -8,8 +8,5 @@ def shortener_url(url:str) -> str:
 
 
 def is_url(url: str) -> bool:
-    try:
-        urlparse(url)
-        return True
-    except ValueError:
-        return False
+    result = urlparse(url)
+    return bool(result.scheme and result.netloc)
