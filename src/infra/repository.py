@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from domain.models import ShortUrl
+import base62
 
 
 class ShortUrlRepository:
@@ -13,9 +14,15 @@ class ShortUrlRepository:
             .first()
         )
 
-    def create(self, short_code: str, original_url: str) -> ShortUrl:
-        entry = ShortUrl(short_code=short_code, original_url=original_url)
+    def create(self, original_url: str) -> ShortUrl:
+        entry = ShortUrl(original_url=original_url)
         self.db.add(entry)
+        
+        self.db.flush()
+
+        entry.short_code = base62.encode(entry.id_short_url)
+
         self.db.commit()
         self.db.refresh(entry)
+
         return entry

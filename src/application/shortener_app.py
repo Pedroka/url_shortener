@@ -1,30 +1,17 @@
 from urllib.parse import urlparse
-from snowflake_id_toolkit import TwitterSnowflakeIDGenerator
-import base62
-
-class IdGenerator:
-    def __init__(self):
-        self.client_id = TwitterSnowflakeIDGenerator(node_id=1)
-        self.id = self.id_generator()
-
-    def id_generator(self):
-        return self.client_id.generate_next_id()
-    
-    def encode_base62(self):
-        return base62.encode(self.id)
-
+from infra.repository import ShortUrlRepository
+from sqlalchemy.orm import Session
+from fastapi import HTTPException
     
 
-def shortener_url(url:str) -> str:
-    print(url)
-    if is_url(url):
-        generator = IdGenerator()
-        base62_url = generator.encode_base62()
-        
-        return f'localhost:8000/{base62_url}'
-    else:
-        print("Nao é uma URL")
+def shortener_url(url:str, db: Session) -> str:
+    if not is_url(url):
+        raise HTTPException(status_code=400, detail="URL inválida")
+    
+    repo = ShortUrlRepository(db=db)
+    new_url = repo.create(original_url=url)
 
+    return f'localhost:8000/{new_url.short_code}'
 
 def is_url(url: str) -> bool:
     result = urlparse(url)
