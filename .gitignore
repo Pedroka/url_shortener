@@ -10,3 +10,10 @@ __pycache__/
 venv/
 env/
 ENV/
+
+# Cache e arquivos temporários do Python gerados nas migrations
+alembic/versions/__pycache__/
+
+# Se você criar algum arquivo de configuração local do alembic com senhas reais
+# (exemplo: alembic.local.ini)
+alembic.local.ini
