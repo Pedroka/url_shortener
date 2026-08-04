@@ -57,24 +57,24 @@ Crie um arquivo .env na raiz do projeto com a URL de conexão do PostgreSQL:
 
 ### 5. Subir o Alembic e criar a tabela
 
- # Garanta que a base do Alembic está sincronizada
- alembic stamp head
+ - Garanta que a base do Alembic está sincronizada
+  - alembic stamp head
 
- # Gere o arquivo de migration (caso não tenha gerado)
- alembic revision --autogenerate -m "create short_urls table"
+ - Gere o arquivo de migration (caso não tenha gerado)
+  - alembic revision --autogenerate -m "create short_urls table"
 
- # Aplique as tabelas no PostgreSQL
- alembic upgrade head
+ - Aplique as tabelas no PostgreSQL
+  - alembic upgrade head
 
 
 ### 6. Rodando Localmente com Ambiente Virtual
- # Criar e ativar a venv
-    python -m venv .venv
-    source .venv/bin/activate  # Linux/Mac
- # .venv\Scripts\activate   # Windows
+ - Criar e ativar a venv
+    - python -m venv .venv
+    - source .venv/bin/activate  # Linux/Mac
+    - .venv\Scripts\activate   # Windows
 
- # Instalar as dependências
-    pip install -r requirements.txt
+ - Instalar as dependências
+    - pip install -r requirements.txt
 
- # Subir a aplicação com Uvicorn
-    uvicorn src.main:app --reload
+ - Subir a aplicação com Uvicorn
+    - uvicorn src.main:app --reload
