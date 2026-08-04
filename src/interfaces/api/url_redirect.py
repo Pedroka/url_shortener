@@ -9,5 +9,4 @@ router = APIRouter()
 
 @router.get("/{short_url}",status_code=301)
 def redirect(short_url, db: Session = Depends(get_db)) -> RedirectResponse:
-    print(short_url)
     return RedirectResponse(url=search_short_code(short_code_url=short_url,db=db),status_code=301)
