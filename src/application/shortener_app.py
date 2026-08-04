@@ -2,7 +2,7 @@ from urllib.parse import urlparse
 from infra.repository import ShortUrlRepository
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-    
+
 
 def shortener_url(url:str, db: Session) -> str:
     if not is_url(url):
