@@ -57,13 +57,13 @@ Crie um arquivo .env na raiz do projeto com a URL de conexão do PostgreSQL:
 
 ### 5. Subir o Alembic e criar a tabela
 
- # 1. Garanta que a base do Alembic está sincronizada
+ # Garanta que a base do Alembic está sincronizada
  alembic stamp head
 
- # 2. Gere o arquivo de migration (caso não tenha gerado)
+ # Gere o arquivo de migration (caso não tenha gerado)
  alembic revision --autogenerate -m "create short_urls table"
 
- # 3. Aplique as tabelas no PostgreSQL
+ # Aplique as tabelas no PostgreSQL
  alembic upgrade head
 
 
